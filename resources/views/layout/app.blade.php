@@ -58,7 +58,7 @@
                             <a class="nav-link" href="#">Dashboard</a>
                         </li>
                         <li class="nav-item">
-                            <a class="nav-link" href="#">Posts</a>
+                            <a class="nav-link" href="{{ route('post') }}">Posts</a>
                         </li>
                         <li class="nav-item">
                             <form class="nav-link"  action="{{ route('logout')  }}" method="POST">
