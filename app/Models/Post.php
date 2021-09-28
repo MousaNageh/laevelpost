@@ -24,5 +24,8 @@ class Post extends Model
     public function like(){
         return $this->hasMany(Like::class);
     }
+    public function numberOflikesForUserPosts(){
+        return $this->hasManyThrough(Like::class,Post::class);
+    }
 
 }
