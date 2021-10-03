@@ -2,16 +2,20 @@
 
 namespace App\Http\Controllers;
 
+use App\Mail\PostLiked;
 use App\Models\Post;
 use Facade\FlareClient\Http\Response;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
+use Illuminate\Support\Facades\Mail;
 use Laravel\Ui\Presets\React;
 
 class PostController extends Controller
 {
     public function index(){
         // dd(auth()->user()->post()->select("post")->get());
+
+        Mail::to(auth()->user())->send(new PostLiked(Auth::user(),Post::all()->first()));
         return view("posts.index")->with("posts",Post::orderBy("created_at","desc")->with(["user","like"])->paginate(20));
     }
     public function store(Request $request){
